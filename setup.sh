@@ -26,7 +26,6 @@ nginx () {
 	local port=$3
 	echo $1
 	sudo printf "server {\n\tlisten 80;\n\troot /usr/share/nginx/html;\n\tserver_name ${url}\n\t location / {\n\t\tproxy_pass http://127.0.0.1:${port};\n\t\tproxy_http_version 1.1;\n\t\tproxy_set_header Upgrade ${doller}http_upgrade\n\t\tproxy_set_header Connection 'upgrade';\n\t\tproxy_set_header Host ${doller}host;\n\t\tproxy_cache_bypass ${doller}http_upgrade;\n\t}\n}" >> "/etc/nginx/conf.d/${file_name}.conf"
-	#sudo printf "server {\n\tlisten 80;\n\troot /usr/share/nginx/html;\n\tserver_name ${$2}\n\tlocation / {\n\t\tproxy_pass http://127.0.0.1:${$3};\n\t\tproxy_http_version 1.1;\n\t\tproxy_set_header Upgrade http_upgrade;\n\t\tproxy_set_header Connection 'upgrade';\n\t\tproxy_set_header Host $host;\n\t\tproxy_cache_btpass http_upgrade;\n\t}\n}" >>  "/etc/nginx/conf.d/${file_name}.conf"
 }
 
 file_name="server"
@@ -41,13 +40,9 @@ if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
 	nginx $file_name $url $port
 fi
 
-echo $file_name
-echo $url
-echo $port
-
+#function call
+check_root
+update
+upgrade
+install
 nginx
-
-#check_root
-#update
-#upgrade
-#install
