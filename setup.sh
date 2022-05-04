@@ -16,13 +16,13 @@ upgrade () {
 
 install () {
 	sudo apt-get install -y vim unzip nginx
-	sudo npm i -g pm2
 	#install nodejs
 	cd ~
 	curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
 	nano /tmp/nodesource_setup.sh
 	sudo bash /tmp/nodesource_setup.sh
 	sudo apt install nodejs npm
+	sudo npm i -g pm2
 }
 
 nginx () {
@@ -40,7 +40,7 @@ port="3000"
 
 read -p "Want to setup nginx config? (y/n): " confirm 
 if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]; then
-	read -p "Enter the config file name: " file_name
+	read -p "Enter the config file name (without extension): " file_name
 	read -p "Enter URL (www.abcd.com) : " url
 	read -p "Port (3000) : " port
 	nginx $file_name $url $port
