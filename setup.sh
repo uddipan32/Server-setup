@@ -19,7 +19,7 @@ install () {
 	#install nodejs
 	cd ~
 	curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
-	nano /tmp/nodesource_setup.sh
+	# nano /tmp/nodesource_setup.sh
 	sudo bash /tmp/nodesource_setup.sh
 	sudo apt install nodejs npm
 	sudo npm i -g pm2
@@ -31,7 +31,7 @@ nginx () {
 	local url=$2
 	local port=$3
 	echo $1
-	sudo printf "server {\n\tlisten 80;\n\troot /usr/share/nginx/html;\n\tserver_name ${url}\n\t location / {\n\t\tproxy_pass http://127.0.0.1:${port};\n\t\tproxy_http_version 1.1;\n\t\tproxy_set_header Upgrade ${doller}http_upgrade\n\t\tproxy_set_header Connection 'upgrade';\n\t\tproxy_set_header Host ${doller}host;\n\t\tproxy_cache_bypass ${doller}http_upgrade;\n\t}\n}" >> "/etc/nginx/conf.d/${file_name}.conf"
+	sudo printf "server {\n\tlisten 80;\n\troot /usr/share/nginx/html;\n\tserver_name ${url}\n\t location / {\n\t\tproxy_pass http://127.0.0.1:${port};\n\t\tproxy_http_version 1.1;\n\t\tproxy_set_header Upgrade ${doller}http_upgrade;\n\t\tproxy_set_header Connection 'upgrade';\n\t\tproxy_set_header Host ${doller}host;\n\t\tproxy_cache_bypass ${doller}http_upgrade;\n\t}\n}" >> "/etc/nginx/conf.d/${file_name}.conf"
 }
 
 file_name="server"
