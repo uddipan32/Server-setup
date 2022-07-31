@@ -21,7 +21,8 @@ install () {
 	curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
 	# nano /tmp/nodesource_setup.sh
 	sudo bash /tmp/nodesource_setup.sh
-	sudo apt install nodejs npm
+	sudo apt-get install nodejs
+	sudo apt-get install npm 
 	sudo npm i -g pm2
 }
 
